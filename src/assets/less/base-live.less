@@ -1,0 +1,85 @@
+.clearfix:after { 
+  clear: both; 
+  height: 0; 
+  overflow: hidden; 
+  display: block; 
+  visibility: hidden; 
+  content: "\20"; 
+}
+
+.list{
+  position: relative;
+  .item-wrap{
+    float: left;
+    .item{
+      position: relative;
+      border-radius: 20px;
+      color: #fff;
+      font: 18px 'PingFang SC';
+      .record-img{
+        width: 291px;
+        height: 291px;
+        border-radius: 20px;
+      }
+      .opacity{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.2)), color-stop(0.4, rgba(0,0,0,0)), color-stop(0.6, rgba(0,0,0,0)), to(rgba(0,0,0,0.2)));
+        border-radius: 20px;
+      }
+      .nickname{
+        position: absolute;
+        left: 20px;
+        bottom: 20px;
+        font: bold 23px 'PingFang SC';
+        line-height: 1;
+      }
+      .plusv{
+        float: right;
+        width: 21px;
+        height: 21px;
+        margin: 1px 5px; 
+      }
+      .state{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3px 10px;
+        border: 1px solid #fff; /*!px*/
+        border-radius: 18px;
+      }
+      .watch{
+        position: absolute;
+        top: 15px;
+        left: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+          width: 22px;
+          height: 14px;
+          margin-right: 5px;
+        }
+      }
+      .location{
+        position: absolute;
+        bottom: 20px;
+        right: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+          width: 15.56px;
+          height: 20px;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
