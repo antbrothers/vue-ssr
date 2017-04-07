@@ -11,16 +11,15 @@ import * as types from './mutation-type'
  */
 export const GetContributeionList = ({commit}, params) => {
   http.post({
-    url: 'api/ApiUserReward/GetContributeionList',
+    url: '/LVBpages/api/ApiUserReward/GetContributeionList',
     data: params.data,
     succ: function (res) {
       if (res.result === 1) {
         console.log(res)
         commit(types.GET_GIT, res.data)
       } else {
-        // alert(res.message)
         mui.toast(res.message)
       }
     }
-  }, params._this.$store.commit)
+  })
 }

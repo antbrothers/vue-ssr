@@ -1,18 +1,21 @@
 import { IS_IOS } from './useragent'
+const inBrowser = typeof window !== 'undefined'
 /*
  获取登录相关信息
  */
 export const GET_LOGIN_INFO = (str) => {
   let strCB = '{"callbackname":"' + str + '"}'
-  try {
-    if (IS_IOS) {
-      window.location = 'emH5GetLoginStatus:' + strCB
-    } else {
-      if (window.eastmoney) {
-        window.eastmoney.emH5GetLoginStatus(strCB)
+  if (inBrowser) {
+    try {
+      if (IS_IOS) {
+        window.location = 'emH5GetLoginStatus:' + strCB
+      } else {
+        if (window.eastmoney) {
+          window.eastmoney.emH5GetLoginStatus(strCB)
+        }
       }
+    } catch (e) {
     }
-  } catch (e) {
   }
 }
 
@@ -21,15 +24,17 @@ export const GET_LOGIN_INFO = (str) => {
  */
 export const GET_DEVICE_INFO = (str) => {
   let strCB = '{"callbackname":"' + str + '"}'
-  try {
-    if (IS_IOS) {
-      window.location = 'getDeviceInfo:' + strCB
-    } else {
-      if (window.eastmoney) {
-        window.eastmoney.getDeviceInfo(strCB)
+  if (inBrowser) {
+    try {
+      if (IS_IOS) {
+        window.location = 'getDeviceInfo:' + strCB
+      } else {
+        if (window.eastmoney) {
+          window.eastmoney.getDeviceInfo(strCB)
+        }
       }
+    } catch (e) {
     }
-  } catch (e) {
   }
 }
 
@@ -37,13 +42,15 @@ export const GET_DEVICE_INFO = (str) => {
  显示分享
  */
 export const SHOW_SHARE = (strdhlfx) => {
-  try {
-    if (IS_IOS) {
-      window.location = 'emH5ShareNeed:' + strdhlfx
-    } else {
-      window.eastmoney.emH5ShareNeed(strdhlfx)
+  if (inBrowser) {
+    try {
+      if (IS_IOS) {
+        window.location = 'emH5ShareNeed:' + strdhlfx
+      } else {
+        window.eastmoney.emH5ShareNeed(strdhlfx)
+      }
+    } catch (e) {
     }
-  } catch (e) {
   }
 }
 
@@ -52,13 +59,15 @@ export const SHOW_SHARE = (strdhlfx) => {
  */
 export const SET_TITLE = (txt) => {
   var strCB = '{"title1":"' + txt + '"}'
-  try {
-    if (IS_IOS) {
-      window.location = 'emH5Title:' + strCB
-    } else {
-      window.eastmoney.emH5Title(strCB)
+  if (inBrowser) {
+    try {
+      if (IS_IOS) {
+        window.location = 'emH5Title:' + strCB
+      } else {
+        window.eastmoney.emH5Title(strCB)
+      }
+    } catch (e) {
     }
-  } catch (e) {
   }
 }
 /*
@@ -118,11 +127,11 @@ export const OPEN_LIVE_BYID = (channelId, type = '1') => { // 跳直播
 /* eslint-disable */
 
 function eventOpenLive(s, a) {
-  if (IS_IOS) {
+  if (inBrowser) {
+    if (IS_IOS) {
     var iosstr = '{"callbackname":"callbackOpen","appname":"haitunlive://","scheme":"' + s + '"}'
     window.location = "emH5toOpenApp:" + iosstr
   } else {
-
     var bytes = a.split('params=')
     bytes[1] = encodeURIComponent(base64encode(bytes[1]))
     var userAgent = navigator.userAgent.toLowerCase()
@@ -151,6 +160,7 @@ function eventOpenLive(s, a) {
       androidstr = '{"callbackname":"callbackOpen","appname":"' + appname + '","scheme":"' + bytes[0] + 'params=' + bytes[1] + '","isLocal":"false"}';
       eastmoney.emH5toOpenApp(androidstr)
     }
+  }
   }
 }
 
@@ -197,13 +207,16 @@ function base64encode(str) {
 }
 
 
-window.callbackOpen = function (returnValue) {
-  var str = JSON.parse(returnValue)
-  if (str.code != "0") {
-    if (IS_IOS) {
-    } else {
-      // window.location.href='http://zhibo.eastmoney.com/'
+if (inBrowser) {
+  window.callbackOpen = function (returnValue) {
+    var str = JSON.parse(returnValue)
+    if (str.code != "0") {
+      if (IS_IOS) {
+      } else {
+        // window.location.href='http://zhibo.eastmoney.com/'
+      }
     }
   }
 }
+
 

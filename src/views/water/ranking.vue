@@ -254,8 +254,6 @@
       },
       // 获取数据
       getData () {
-        // this.uid = cookie('uid')
-        // console.log('uid:' + cookie('uid'))
         this.$store.dispatch('GetContributeionList', {data: {ranktype: this.gitType, datetype: this.dayType}, _this: this})
       },
       // 关注

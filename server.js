@@ -59,13 +59,12 @@ app.use('/static', serve('./static'))
  * @type {{target: string, changeOrigin: boolean, pathRewrite: {^/api: string}}}
  */
 var options = {
-  target: 'http://lvbqas.eastmoney.com',
+  target: 'http://list-qas.lvb.eastmoney.com',
   changeOrigin: true,
   pathRewrite: {
-    '^/LVBpages': ''
+    '^/LVBpages': '/LVBpages'
   }
 };
-
 var exampleProxy = proxy(options);
 app.use('/LVBpages', exampleProxy);
 app.get('*', (req, res) => {

@@ -92,53 +92,53 @@ export const post = ({url, base, data, succ, error}, commit) => {
   if (commit) {
     commit('UPDATE_LOADING', true)
   }
-  /*fetch(`/LVBpages/${_url}`, {
-   method: 'POST',
-   headers: {
-   'Accept': 'application/json',
-   'Content-Type': 'application/x-www-form-urlencoded'
-   },
-   body: query
-   })
-   .then((res) => {
-   if(commit){
-   commit('UPDATE_LOADING', false)
-   }
-   if (res.status >= 200 && res.status < 300) {
-   return res.json()
-   } else {
-   if (error) {
-   error()
-   } else {
-   alert('服务器错误,请稍后再试')
-   }
-   return Promise.reject(new Error(res.status))
-   }
-   })
-   .then((json) => {
-   succ(json)
-   })
-   .catch((ex) => {
-   if(commit){
-   commit('UPDATE_LOADING', false)
-   }
-   console.log(ex)
-   })*/
-  fetch(`/LVBpages/${_url}`, {
-    method: 'post',
+  fetch(_url, {
+    method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded'
     },
     body: query
   })
-  .then((response) => {
-    if (response.ok) {
-      return response.json();
+  .then((res) => {
+    if (commit) {
+      commit('UPDATE_LOADING', false)
     }
-  }).then((json) => {
-    alert(JSON.stringify(json));
-  }).catch((error) => {
-    console.error(error);
+    if (res.status >= 200 && res.status < 300) {
+      return res.json()
+    } else {
+      if (error) {
+        error()
+      } else {
+        alert('服务器错误,请稍后再试')
+      }
+      return Promise.reject(new Error(res.status))
+    }
   })
+  .then((json) => {
+    succ(json)
+  })
+  .catch((ex) => {
+    if (commit) {
+      commit('UPDATE_LOADING', false)
+    }
+    console.log(ex)
+  })
+  /*fetch(`/LVBpages/${_url}`, {
+   method: 'post',
+   headers: {
+   'Accept': 'application/json',
+   'Content-Type': 'application/x-www-form-urlencoded'
+   },
+   body: query
+   })
+   .then((response) => {
+   if (response.ok) {
+   return response.json();
+   }
+   }).then((json) => {
+   alert(JSON.stringify(json));
+   }).catch((error) => {
+   console.error(error);
+   })*/
 }

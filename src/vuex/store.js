@@ -11,7 +11,7 @@ import personal from './modules/water_personal/store'
 import rankgingList from './modules/water_ranking/store'
 import rewardList from './modules/reward/store' */
 import ranking from './modules/ranking/store'
-
+import loading from './modules/share/loading'
 const debug = process.env.NODE_ENV !== 'production'
 
 Vue.use(Vuex)
@@ -19,7 +19,8 @@ Vue.config.debug = true
 
 export default new Vuex.Store({
   modules: {
-    ranking
+    ranking,
+    loading
   },
   strict: debug
 })

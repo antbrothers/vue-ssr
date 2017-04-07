@@ -8,7 +8,6 @@ import router from  './router'
 import { sync } from 'vuex-router-sync'
 
 sync(store, router)
-
 /**
  * 创建vue实例
  * 在这里注入 router store 到所以的子组件

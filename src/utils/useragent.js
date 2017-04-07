@@ -1,20 +1,27 @@
 
-/*
-是否是浪客直播APP
-*/
-export const IS_LIVE = window.navigator.userAgent.toLowerCase().indexOf('eastmoney_live') !== -1 || window.navigator.userAgent.toLowerCase().indexOf('eastmoney_emlive') !== -1
+const inBrowser = typeof window !== 'undefined'
+export let  IS_LIVE = true
+export let IS_EASTMONEY =true
+export let IS_WEIXIN = true
+export let IS_IOS = true
+if (inBrowser) {
+  /*
+   是否是浪客直播APP
+   */
+  IS_LIVE = navigator.userAgent.toLowerCase().indexOf('eastmoney_live') !== -1 || navigator.userAgent.toLowerCase().indexOf('eastmoney_emlive') !== -1
+  /*
+   是否是东财APP
+   */
+  IS_EASTMONEY = navigator.userAgent.toLowerCase().indexOf('eastmoney') !== -1
 
-/*
-是否是东财APP
-*/
-export const IS_EASTMONEY = window.navigator.userAgent.toLowerCase().indexOf('eastmoney') !== -1
+  /*
+   是否是微信
+   */
+  IS_WEIXIN = navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1
 
-/*
-是否是微信
-*/
-export const IS_WEIXIN = window.navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1
+  /*
+   是否是IOS
+   */
+  IS_IOS = /(iPhone|iPod|iPad|iTouch|iOS)/i.test(navigator.userAgent)
+}
 
-/*
-是否是IOS
-*/
-export const IS_IOS = /(iPhone|iPod|iPad|iTouch|iOS)/i.test(window.navigator.userAgent)
