@@ -4,14 +4,8 @@
     <input type="text" v-model='ctoken' placeholder="请输入ctoken">
     <input type="text" v-model='utoken' placeholder="请输入utoken">
     <button @click='login'>模拟登录</button>
-    <button @click='ticket()'>周排行版</button>
-    <button @click="personal()">个人排行</button>
     <button @click="order()">排行榜2</button>
-    <button @click="reward()">赏金榜</button>
-    <button @click="fund()">基金页8点</button>
-    <button @click="school()">校花驾到</button>
-    <button @click="snh48()">snh48</button>
-    <button @click="songLi()">送礼版</button>
+    <button @click="video()">视频播放插件</button>
   </div>
 </template>
 <script>
@@ -39,29 +33,11 @@
         cookie('plat', plat, {'path': '/'})
         cookie('network', network, {'path': '/'})
       },
-      ticket () {
-        this.$router.push({path: '/water/ticket'})
-      },
-      personal () {
-        this.$router.push({path: '/water/personal/1076014682057634'})
-      },
-      fund () {
-        this.$router.push({path: '/short/fund'})
-      },
-      school () {
-        this.$router.push({path: '/opr/school'})
-      },
-      snh48 () {
-        this.$router.push({path: '/opr/snh48'})
-      },
       order () {
         this.$router.push({path: '/water/ranking'})
       },
-      reward () {
-        this.$router.push({path: '/water/reward'})
-      },
-      songLi () {
-        this.$router.push({path: '/water/giving/1076014682057634'})
+      video () {
+        this.$router.push({path: '/video'})
       }
     }
   }

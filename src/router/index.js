@@ -6,6 +6,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 const Test = () => System.import('../views/test.vue')
 const ranking = () => System.import('../views/water/ranking.vue')
+const  videoComponent = () => System.import('../views/video/playVideo.vue')
 export default new Router({
   mode: 'history',
   routes: [
@@ -18,6 +19,11 @@ export default new Router({
       path: '/water/ranking',
       name: 'ranking',
       component: ranking
+    },
+    {
+      path: '/video',
+      name: 'video',
+      component: videoComponent
     }
   ]
 })
