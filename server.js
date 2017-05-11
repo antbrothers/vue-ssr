@@ -5,7 +5,8 @@ const favicon = require('serve-favicon')
 const compression = require('compression')
 const resolve = file => path.resolve(__dirname, file)
 const proxy = require('http-proxy-middleware');//引入代理中间件
-
+const config = require('./build/index')       // 配置代理接口
+debugger;
 const isProd = process.env.NODE_ENV === 'production'
 const serverInfo =
   `express/${require('express/package.json').version} ` +
@@ -58,7 +59,7 @@ app.use('/static', serve('./static'))
  * 代理跨域配置
  * @type {{target: string, changeOrigin: boolean, pathRewrite: {^/api: string}}}
  */
-var options = {
+/*var options = {
   target: 'http://list-qas.lvb.eastmoney.com',
   changeOrigin: true,
   pathRewrite: {
@@ -66,7 +67,18 @@ var options = {
   }
 };
 var exampleProxy = proxy(options);
-app.use('/LVBpages', exampleProxy);
+app.use('/LVBpages', exampleProxy);*/
+
+debugger
+var proxyTable = config.proxyTable
+Object.keys(config.proxyTable).forEach(function (context) {
+  debugger
+  var options = proxyTable[context]
+  var Proxy = proxy(options)
+  app.use(context, Proxy)
+})
+
+
 app.get('*', (req, res) => {
   if (!renderer) {
     return res.end('waiting for compilation... refresh in a moment.')

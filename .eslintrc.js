@@ -19,7 +19,8 @@ module.exports = {
     "$": true,
     "wx": true,
     "window": true,
-    "browser": true
+    "browser": true,
+    "zepto": true
   },
   // add your custom rules here
   'rules': {
